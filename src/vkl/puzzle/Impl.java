@@ -75,7 +75,10 @@ public class Impl {
 			for (int j = 0; j < tabuleiro[i].length; j++) {
 				k = k+1;
 				if(tabuleiro[i][j] !=  k)//não venceu,sol=0;
+				{
 					solucao=0;
+					break;
+				}
 			}
 		}
 		return solucao;
