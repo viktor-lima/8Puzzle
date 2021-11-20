@@ -67,6 +67,18 @@ public class Impl {
 				
 		
 	}
-	
+
+	public static int verificaSeGanhou() {
+		int k = 0;
+		int solucao = 1;
+		for (int i = 0; i < tabuleiro.length; i++) {
+			for (int j = 0; j < tabuleiro[i].length; j++) {
+				k = k+1;
+				if(tabuleiro[i][j] !=  k)//não venceu,sol=0;
+					solucao=0;
+			}
+		}
+		return solucao;
+	}
 	
 }
