@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class Impl {
 
-	public static int[][] tabuleiro;
-	public static int movimento = 0;
+	public  int[][] tabuleiro;
+	public  int movimento = 0;
 	// coordenadas do espaço em branco
-	public static int  xBranco = 0;
-	public static int yBranco = 0;
+	public  int  xBranco = 0;
+	public  int yBranco = 0;
 
 	public void inicializaVariaveis() {
 		int k = 0;
@@ -126,6 +126,36 @@ public class Impl {
 			movimento = movimento + 1;
 		}
 		return jogadaValida;
+	}
+	
+	public void embaralhaTabileiro() {
+		// x e y: incrementos para realizar movimentos do branco
+		//pelo tabuleiro. assumen valores 0,1 e -1
+		int temp=0,x=0,y=0;
+		//t1 e t4: verificações se os valores associados a x e y
+		//produzem movimentos válidos no tabuleiro
+		int t1 =0,t2=0,t3=0,t4=0;
+		for (int i = 1; i <= 30; i++) {
+			//chances iguais para x e y assumirem 0,1 e -1
+			do {
+				x=((int)(Math.random()*3)) -1;
+				y=((int)(Math.random()*3)) -1;
+				
+				t1 = (xBranco+x);
+				t2 = yBranco + y;
+				t3 = Math.abs(x) + Math.abs(y);
+				t4 = x+y;
+			}while((t1>2)||(t1<0)||(t2>2)||(t2<0)||t3>1	||t4==0);
+			
+			//realiza a movimentação do tabuleiro
+			temp = tabuleiro[xBranco][yBranco];
+			tabuleiro[xBranco][yBranco] = tabuleiro[xBranco+x][yBranco+y];
+			tabuleiro[xBranco+x][yBranco+y] = temp;
+			
+			//guarda a nova posição do branco
+			xBranco = xBranco+x;
+			yBranco = yBranco+y;
+		}
 	}
 
 	
