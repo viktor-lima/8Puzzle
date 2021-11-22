@@ -11,18 +11,24 @@ public class Program {
 		
 		System.out.println("Jogo 8 quadrados.\n");
 		p.inicializaVariaveis();
-		p.imprimeTabuleiroBonito();
-		int solucao = p.verificaSeGanhou();
-		if(solucao == 1)
-			System.out.println("Parabéns, você venceu!");
-		else
-			System.out.println("\n Ainda não terminou o jogo");	
-		
-		int jogada = p.solicitaMovimento();
-		System.out.println("Você escolheu mover o quadrado numero: " + jogada + "\n");
-		p.atualizaTabuleiro(jogada);
-		p.imprimeTabuleiroBonito();
-		
+		p.embaralhaTabileiro();
+		while(true) {
+			int solucao = p.verificaSeGanhou();
+			if(solucao == 1) {
+				p.imprimeTabuleiroBonito();
+				System.out.println("Parabéns, você venceu!");
+				System.exit(0);
+			}
+			else {
+				int lanceValido = 0;
+				while(lanceValido == 0) {
+					p.imprimeTabuleiroBonito();
+					int jogada = p.solicitaMovimento();
+					lanceValido = p.atualizaTabuleiro(jogada);
+				}
+			}
+			
+		}
 	}	
 }
 
